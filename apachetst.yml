@@ -1,0 +1,15 @@
+# Test ansible playbook to install/start apache web server
+---
+- name: apacheplaybook
+  hosts: centos7-2
+  become: yes
+  become_user: root
+  tasks:
+    - name: ensure apache is at lastest version
+      yum:
+        name: httpd
+        state: latest
+    - name: ensure apache is running
+      service:
+        name: httpd
+        state: started
